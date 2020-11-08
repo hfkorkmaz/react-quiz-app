@@ -55,7 +55,7 @@ export default function Card({ question }) {
             onClick={() => {
               setRevealAnswer(true);
             }}
-            class="reveal-answer-button"
+            className="reveal-answer-button"
           >
             Reveal the Answer
           </button>
