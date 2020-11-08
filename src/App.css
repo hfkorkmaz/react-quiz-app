@@ -2,6 +2,47 @@
   text-align: center;
 }
 
+.filter-section {
+  height: 6rem;
+  border-bottom: 1px solid black;
+  background-color: lightblue;
+}
+
+.filter-form {
+  display: flex;
+  justify-content: center;
+}
+
+.filter-input-container-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.filter-input-container {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.filter-form-submit-button {
+  background-image: linear-gradient(
+    136deg,
+    rgb(242, 113, 33) 0%,
+    rgb(233, 64, 87) 50%,
+    rgb(138, 35, 135) 100%
+  );
+  border: none;
+  border-radius: 10px;
+  color: white;
+  margin-top: 5px;
+  width: 50%;
+  padding: 5px;
+}
+
+#number-of-questions {
+  width: 50px;
+}
+
 .card-grid {
   display: grid;
   margin: 2rem 2rem 2rem 2rem;
@@ -38,7 +79,12 @@
   margin-top: 1rem;
 }
 .reveal-answer-button {
-  background-color: hsl(200, 100%, 50%);
+  background-image: linear-gradient(
+    136deg,
+    rgb(107, 189, 241) 0%,
+    rgb(155, 126, 213) 50%,
+    rgb(138, 35, 135) 100%
+  );
   color: white;
   padding: 0.5em 1em;
   border-radius: 0.3em;
@@ -46,7 +92,12 @@
   cursor: pointer;
 }
 .hide-answer-button {
-  background-color: hsl(200, 100%, 50%);
+  background-image: linear-gradient(
+    136deg,
+    rgb(138, 35, 135) 0%,
+    rgb(155, 126, 213) 50%,
+    rgb(107, 189, 241) 100%
+  );
   color: white;
   padding: 0.5em 1em;
   border-radius: 0.3em;

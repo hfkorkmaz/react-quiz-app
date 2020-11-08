@@ -41,6 +41,37 @@ function App() {
 
   return (
     <div className="App">
+      <div className="filter-section">
+        <form className="filter-form">
+          <div className="filter-input-container-container">
+            <div className="filter-input-container">
+              <label htmlFor="category-select">Categories : </label>
+              <select id="category-select" name="category-select">
+                <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="opel">Opel</option>
+                <option value="audi">Audi</option>
+              </select>
+            </div>
+            <div className="filter-input-container">
+              <label htmlFor="number-of-questions">
+                Number of questions :{" "}
+              </label>
+              <input
+                type="number"
+                defaultValue={1}
+                min={1}
+                id="number-of-questions"
+              />
+            </div>
+            <div>
+              <button type="submit" className="filter-form-submit-button">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
       <div className="container">
         <CardList questions={questions}></CardList>
       </div>
