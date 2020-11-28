@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
 function decodeString(str) {
-  const textArea = document.createElement('textarea')
-  textArea.innerHTML= str
-  return textArea.value
+  const textArea = document.createElement("textarea");
+  textArea.innerHTML = str;
+  return textArea.value;
 }
-
 
 export default function Card({ question }) {
   const [revealAnswer, setRevealAnswer] = useState(false);
@@ -16,7 +15,7 @@ export default function Card({ question }) {
     question.possibleAnswers.forEach((answer) => {
       if (answer === question.correct_answer) {
         options.push(
-          <div className="option true-answer" key={answer}>
+          <div className="option" key={answer}>
             {decodeString(answer)}
           </div>
         );
@@ -32,35 +31,23 @@ export default function Card({ question }) {
     question.possibleAnswers.forEach((answer) => {
       options.push(
         <div className="option" key={answer}>
-            {decodeString(answer)}
+          {decodeString(answer)}
         </div>
       );
     });
   }
 
+  const flipCard = () => {
+    setRevealAnswer(!revealAnswer);
+  };
+
   return (
-    <div className="card">
-      {decodeString(question.question)}
-      <div className="options">{options}</div>
-      <div className="button-container">
-        {revealAnswer ? (
-          <button
-            onClick={() => setRevealAnswer(false)}
-            className="hide-answer-button"
-          >
-            Hide the Answer
-          </button>
-        ) : (
-          <button
-            onClick={() => {
-              setRevealAnswer(true);
-            }}
-            className="reveal-answer-button"
-          >
-            Reveal the Answer
-          </button>
-        )}
+    <div className={`card ${revealAnswer ? "flipped" : ""}`} onClick={flipCard}>
+      <div className="card-front">
+        {decodeString(question.question)}
+        <div className="options">{options}</div>
       </div>
+      <div className="card-back">{decodeString(question.correct_answer)}</div>
     </div>
   );
 }

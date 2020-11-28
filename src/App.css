@@ -47,11 +47,7 @@
   display: grid;
   margin: 2rem 2rem 2rem 2rem;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  /* This is better for small screens, once min() is better supported */
-  /* grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); */
   grid-gap: 1rem;
-  /* This is the standardized property now, but has slightly less support */
-  /* gap: 1rem */
 }
 
 .card {
@@ -64,6 +60,30 @@
   position: relative;
   flex-direction: column;
   padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.6s; 
+  transform-style: preserve-3d;
+}
+
+.card:hover{
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+.flipped{
+  transform: rotateY(180deg);
+}
+
+.card-front{
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+
+
+.card-back{
+  transform: rotateY(180deg);
+  position: absolute;
 }
 
 .options {
@@ -103,8 +123,4 @@
   border-radius: 0.3em;
   border: none;
   cursor: pointer;
-}
-
-.true-answer {
-  color: red;
 }
