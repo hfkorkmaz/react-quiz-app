@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TriviaService from "./services/TriviaService";
 import { defaultQuestionsAmount } from "./config";
 export default function Filter(props) {
@@ -6,7 +6,7 @@ export default function Filter(props) {
 
   const [categories, setCategories] = useState([]);
 
-  const [amount, setAmount] = useState(defaultQuestionsAmount);
+  const amountEl = useRef(null);
 
   const [selectedCategory, setSelectedCategory] = useState("anycategory");
 
@@ -24,7 +24,7 @@ export default function Filter(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchQuestions(selectedCategory, amount);
+    fetchQuestions(selectedCategory, amountEl.current.value);
   };
 
   const categoryOptionElements = [];
@@ -60,9 +60,7 @@ export default function Filter(props) {
               defaultValue={defaultQuestionsAmount}
               min={1}
               id="number-of-questions"
-              onChange={(e) => {
-                setAmount(e.target.value);
-              }}
+              ref={amountEl}
             />
           </div>
           <div>
