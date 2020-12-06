@@ -4,10 +4,11 @@ import "./App.css";
 import CardList from "./CardList";
 import Filter from "./Filter";
 import { defaultQuestionsAmount } from "./config";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 function App() {
   const [questions, setQuestions] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     fetchQuestions("anycategory", defaultQuestionsAmount);
   }, []);
@@ -21,6 +22,7 @@ function App() {
   };
 
   const fetchQuestionByAnyCategory = async (amount) => {
+    setIsLoading(true);
     const response = await TriviaService.getQuestionsFromAnyCategory(amount);
 
     if (response.status === 200) {
@@ -36,6 +38,7 @@ function App() {
         element.possibleAnswers = possibleAnswers;
       }
 
+      setIsLoading(false);
       setQuestions(response.data.results);
     }
   };
@@ -66,9 +69,22 @@ function App() {
   return (
     <div className="App">
       <Filter fetchQuestions={fetchQuestions} />
-      <div className="container">
-        <CardList questions={questions}></CardList>
-      </div>
+      {isLoading ? (
+        <div
+          style={{
+            height:"calc(100% - 6rem - 1px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress />
+        </div>
+      ) : (
+        <div className="container">
+          <CardList questions={questions}></CardList>
+        </div>
+      )}
     </div>
   );
 }
